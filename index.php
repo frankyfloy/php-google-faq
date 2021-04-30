@@ -53,6 +53,24 @@
                 ],
             ]
         ],
+        [
+            'question' => "Stabilire il paese associato al tuo account",
+
+            'answParagraphs' => [
+                "
+                Quando crei un nuovo Account Google, lo associamo a un paese in base a dove è stato creato. Per quanto riguarda gli account creati almeno un anno fa, usiamo il paese da cui accedi solitamente ai servizi Google, in genere i servizi in cui hai trascorso più tempo nell'ultimo anno.I viaggi frequenti solitamente non influiscono sul paese associato al tuo account. Se ti trasferisci in un altro paese, potrebbe occorrere circa un anno per aggiornare l'associazione del paese.Se il paese associato al tuo account non corrisponde al tuo paese di residenza, il motivo potrebbe essere la differenza tra il paese in cui lavori e il paese in cui risiedi, l'installazione di una rete privata virtuale (VPN) per mascherare il tuo indirizzo IP oppure la residenza vicino a un confine territoriale. Contattaci se ritieni che il paese associato al tuo account sia sbagliato.
+                ",
+            ]
+        ],
+        [
+            'question' => "Stabilire il paese associato al tuo account",
+
+            'answParagraphs' => [
+                "
+                Quando crei un nuovo Account Google, lo associamo a un paese in base a dove è stato creato. Per quanto riguarda gli account creati almeno un anno fa, usiamo il paese da cui accedi solitamente ai servizi Google, in genere i servizi in cui hai trascorso più tempo nell'ultimo anno.I viaggi frequenti solitamente non influiscono sul paese associato al tuo account. Se ti trasferisci in un altro paese, potrebbe occorrere circa un anno per aggiornare l'associazione del paese.Se il paese associato al tuo account non corrisponde al tuo paese di residenza, il motivo potrebbe essere la differenza tra il paese in cui lavori e il paese in cui risiedi, l'installazione di una rete privata virtuale (VPN) per mascherare il tuo indirizzo IP oppure la residenza vicino a un confine territoriale. Contattaci se ritieni che il paese associato al tuo account sia sbagliato.
+                ",
+            ]
+        ]
     ]
  ?>
 
@@ -113,74 +131,73 @@
         <main>
             <div class="container">
                 <?
-                    // ciclo l'array delle domande
+                    // Iterazione array delle domande
                     foreach ($questions as $faq => $value_by_faq) { ?>
 
-                        <!-- Creo N Section per N  FAQ  -->
+                        <!-- Creazione di N Section per N FAQ  -->
                         <section class="section-answer row">
 
-                            <!-- Creo la colonna contenente il FAQ -->
+                            <!-- Creazione della colonna contenente il FAQ -->
                             <div class="col-12">
 
-                                <!-- Stampo l'header del paragrafo -->
+                                <!-- Stampa Header Paragrafo -->
                                 <h2><?  echo $questions[$faq]['question']; ?>   </h2>
                             </div>
                             <?
-                                //Salvo l'array della/e risposta/e
+                                //Creazione Variabile/Array contenente l'array della/e risposta/e
                                 $answParagraphs = $questions[$faq]['answParagraphs'];
                                 // DEBUG: var_dump($answParagraphs);
 
-                                // Se l'array delle risposta/e ha una lista la condizione è true
+                                // Se l'array delle risposta/e ha una lista la condizione è TRUE
                                 if (array_key_exists('list', $answParagraphs)) {
 
-
-                                    // Salvo la lista contenuta nell'array delle risposte
+                                    // Inizializzazione Variabile/Array della lista contenuta nell'array delle risposte
                                     $list = $answParagraphs['list'];
                                     // DEBUG: var_dump($list);
 
-                                    // Creo la lista ------ HTML
+                                    // Creazione della lista ------ HTML
                                     ?>  <ol> <?
 
-                                    // ciclo gli elementi della lista  --- PHP
+                                    // Iterrazione elementi della lista  --- PHP
                                     foreach ($list as $li => $value_by_li) {
 
-                                        // Controllo se l'elemento della lista ha una sottolista
+                                        // Controllo dell' elemento lista,  Ha una sottolista?
                                         if (is_array($value_by_li)) {?>
 
-                                            <!-- stampo l'elemento della lista che ha una sottolista -->
+                                            <!-- stampa dell'elemento  lista che ha una sottolista -->
                                             <li>
-                                                <? echo $value_by_li[0];?>
+                                                <? echo $value_by_li[$li];?>
 
-                                                <!-- Creo la sottolista  HTML-->
+                                                <!-- Creazione della sottolista  HTML-->
                                                 <ul> <?
 
-                                                // ciclo gli elementi della sottolista
+                                                // Iterazione elementi sottolista
                                                 foreach ($value_by_li['subList'] as $subLi => $value_by_subLi) {?>
-
                                                     <li>
+                                                        <!-- Stampa a schermo gli elementi della sottolista -->
                                                         <?echo $value_by_subLi ?>
-                                                        <!-- $value_by_subLi -->
                                                     </li><?
                                                 }?>
 
-                                                <!-- Chiudo la sottolista -->
+                                                <!-- Chiusura sottolista -->
                                                 </ul>
 
-                                            <!-- Chiudo l'elemento lista con una sottolista -->
+                                            <!-- Chiusura dell'elemento lista con una sottolista -->
                                             </li>
                                             <?
 
-                                        // TODO: creare elemento lista senza sottolista
-                                        }else {
-                                            echo "dai";
-                                        }
+                                        //Creazione dell'elemento lista senza sottolista
+                                    }else {?>
+                                        <li>
+                                            <? echo $value_by_li; ?>
+                                        </li>
+                                        <?}
                                     }?>
 
                                 </ol> <?
 
-                                    // Elemento faq senza lista
+                                // Elemento faq senza lista
                                 }else{
-
                                     for ($i=0; $i < count($questions[$faq]['answParagraphs']); $i++) { ?>
                                         <p> <?echo $questions[$faq]['answParagraphs'][$i] ?> </p><?
                                     }
