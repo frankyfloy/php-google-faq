@@ -60,7 +60,8 @@ body main .container section ol li {
   margin-bottom: 25px;
 }
 body main .container section ol li ul {
-  margin-left: 20px;
+  margin-top: 15px;
+  padding-left: 20px;
   list-style: lower-alpha;
 }
 body footer {
