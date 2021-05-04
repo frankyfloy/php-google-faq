@@ -184,6 +184,7 @@
                 <?
                 // Iterazione array delle domande
                 foreach ($questions as $faq => $value_by_faq) {?>
+                    
 
                     <!-- Creazione di N Section per N FAQ  -->
                     <section class="section-answer row">
