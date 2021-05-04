@@ -82,7 +82,6 @@
         ]
     ];
 
-    // TODO: Aggiungere link tramite Search substring
     $links = [
         [
             'content'  => "-decisione della Corte di giustizia dell'Unione europea",
@@ -110,7 +109,7 @@
         ],
         [
             'content' => "-visitare la nostra pagina di assistenza per avere ulteriori informazioni",
-            'ref' => "https://support.google.com/websearch/troubleshooter/3111061?hl=it</a>"
+            'ref' => "https://support.google.com/websearch/troubleshooter/3111061?hl=it"
         ],
         [
             'content' => "-URL referrer",
@@ -121,11 +120,12 @@
             'ref' => "https://support.google.com/websearch/answer/173733"
         ],
     ];
- ?>
+?>
 
 
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
+
     <head>
         <meta charset="utf-8">
         <title>google faq</title>
@@ -134,10 +134,11 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <!-- Fontawesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous">
         <!-- CSS -->
         <link rel="stylesheet" href="assets/master.css">
     </head>
+
     <body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -181,10 +182,9 @@
 
         <main>
             <div class="container">
-                <?
+                <?php
                 // Iterazione array delle domande
                 foreach ($questions as $faq => $value_by_faq) {?>
-                    
 
                     <!-- Creazione di N Section per N FAQ  -->
                     <section class="section-answer row">
@@ -193,7 +193,7 @@
                         <div class="col-12">
 
                             <!-- Stampa Header Paragrafo -->
-                            <h4><?  echo $questions[$faq]['question']; ?>   </h4><?
+                            <h4><?php  echo $questions[$faq]['question']; ?>   </h4><?php
 
                             //Creazione Variabile/Array contenente l'array della/e risposta/e
                             $answParagraphs = $questions[$faq]['answParagraphs'];
@@ -206,15 +206,15 @@
                                 $list = $answParagraphs['list'];
                                 // DEBUG: var_dump($list);
 
-                                // Creazione della lista ------ HTML?>
-                                <ol> <?
+                                // Creazione della lista ?>
+                                <ol> <?php
 
                                     // Iterrazione elementi della lista  --- PHP
                                     foreach ($list as $li => $value_by_li) {
 
-                                        ?>
+                                       ?>
                                         <!-- Creazione elemento lista principale -->
-                                        <li><?
+                                        <li><?php
 
                                         // Controllo dell' elemento lista,  Ha una sottolista?
                                         if (is_array($value_by_li)) {
@@ -222,20 +222,20 @@
                                             // Stampa valore  lista che ha una sottolista
                                             echo $value_by_li[$li];
 
-                                            // Creazione della sottolista  HTML
+                                            // Creazione della sottolista
                                             ?>
-                                            <ul><?
+                                            <ul><?php
 
                                             // Iterazione elementi sottolista
                                             foreach ($value_by_li['subList'] as $subLi => $value_by_subLi) {?>
                                                 <li>
                                                     <!-- Stampa a schermo i valori della sottolista -->
-                                                    <?echo $value_by_subLi ?>
-                                                </li><?
+                                                    <?php echo $value_by_subLi ?>
+                                                </li><?php
                                             }?>
 
                                             <!-- Chiusura sottolista -->
-                                            </ul><?
+                                            </ul><?php
 
                                         //Creazione dell'elemento lista senza sottolista
                                         }else {
@@ -246,15 +246,12 @@
                                     <!-- Chiusura dell'elemento lista con una sottolista -->
                                     </li>
 
-                                </ol><?
+                                </ol><?php
                             }
 
                             // Stampa paragrafi singoli
                             for ($i=0; $i < count($questions[$faq]['answParagraphs']); $i++) {
                                 $currentParagraphs = $questions[$faq]['answParagraphs'][$i];
-                                ?>
-
-                                <?
 
                                 // Controllo link all'interno del paragrafo
                                 foreach ($links as $link => $value) {
@@ -269,27 +266,26 @@
                                         $currentParagraphs = str_replace($tmpLink, $addLink, $currentParagraphs);
                                     }
                                 }?>
-                                <!-- Stampa del paragrafo con aggiunta link e riferimenti -->
-                                <p> <?echo $currentParagraphs ?> </p>
-                                <?
 
+                                <!-- Stampa del paragrafo con aggiunta link e riferimenti -->
+                                <p> <?php echo $currentParagraphs ?> </p> <?php
                             }
 
                             // Controllo sottoparagrafi all'interno dei paragrafi principali
                             if (array_key_exists('otherInfo', $answParagraphs)){
 
+
                                 // Inizializzazione Variabile/Array di altre informazioni contenute nell'array delle risposte
                                 $otherInfo = $answParagraphs['otherInfo'];
-                                // DEBUG: var_dump($otherInfo);?>
-
+                                // DEBUG: var_dump($otherInfo);
+                                ?>
                                 <div class="subInfo">
                                     <!-- Header sottoparagrafo -->
-                                    <h5> <? echo $otherInfo['subHead'] ?></h5><?
+                                    <h5> <?php echo $otherInfo['subHead'] ?> </h5>
 
-                                    // Ciclo array paragrafi per stampare i sottoparagrafi
-                                    for ($i=0; $i < count($questions[$faq]['answParagraphs']); $i++) {
-
-                                        $currentParagraphs =  $otherInfo['answSubParagraphs'][$i];
+                                <?php
+                                    // Ciclo array $otherInfo per stampare i sottoparagrafi
+                                    for ($i=0; $i < count($otherInfo); $i++) {
 
                                         // Controllo link all'interno del paragrafo
                                         foreach ($links as $link => $value) {
@@ -299,18 +295,21 @@
                                             $tmpHref = $links[$link]['ref'];
 
                                             // Aggiunta link all'interno dei paragrafi
-                                            if (strpos($currentParagraphs, $tmpLink)) {
+                                            if (strpos($currentSubParagraphs, $tmpLink)) {
                                                 $addLink = "<a href=\"".$tmpHref."\">".substr($tmpLink, 1)."</a>";
-                                                $currentParagraphs = str_replace($tmpLink, $addLink, $currentParagraphs);
+                                                $currentSubParagraphs = str_replace($tmpLink, $addLink, $currentSubParagraphs);
                                             }
-                                        }?>
+                                        }
+
+                                        $currentSubParagraphs = $otherInfo['answSubParagraphs'][$i];?>
+
                                         <!-- Stampa del paragrafo con aggiunta link e riferimenti -->
-                                        <p> <?echo $currentParagraphs ?> </p><?
+                                        <p> <?php echo $currentSubParagraphs ?> </p><?php
                                     }?>
-                                </div>
-                            <?}?>
+                                </div><?php
+                            }?>
                         </div>
-                    </section><?
+                    </section><?php
                 }?>
             </div>
         </main>
