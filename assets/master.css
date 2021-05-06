@@ -5,9 +5,6 @@
   box-sizing: border-box;
 }
 
-body {
-  overflow: hidden;
-}
 body nav.navbar {
   flex-direction: column;
   align-items: flex-start;
@@ -79,7 +76,6 @@ body footer .row.termsAndConditions div.container div[class^=col-] {
   align-items: center;
   justify-content: space-between;
   padding: 0;
-  background-color: black;
 }
 body footer .row.termsAndConditions div.container div[class^=col-] div {
   display: flex;
@@ -110,7 +106,6 @@ body footer .row.termsAndConditions div.container div[class^=col-] div.language 
 
 .row {
   overflow: hidden;
-  background-color: black;
   margin-left: 0;
   margin-right: 0;
 }
